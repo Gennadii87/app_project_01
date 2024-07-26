@@ -1,0 +1,43 @@
+{% load menu_tags %}
+{% draw_all_menus as menus_data %}
+
+{% for menu_name, menu_data in menus_data.items %}
+    <div class="menu-container">
+        <h2>{{ menu_name }}</h2>
+        {% if menu_data.items %}
+            <ul>
+                {% for item in menu_data.items %}
+                    <li class="{% if item in menu_data.active_items %}active{% endif %}">
+                        <a href="{{ item.get_url }}" target="_blank" rel="noopener noreferrer">
+                            {{ item.title }}
+                        </a>
+                        {% if item.children.all %}
+                            <ul>
+                                {% for child in item.children.all %}
+                                    <li class="{% if child in menu_data.active_items %}active{% endif %}">
+                                        <a href="{{ child.get_url }}" target="_blank" rel="noopener noreferrer">
+                                            {{ child.title }}
+                                        </a>
+                                        {% if child.children.all %}
+                                            <ul>
+                                                {% for grandchild in child.children.all %}
+                                                    <li class="{% if grandchild in menu_data.active_items %}active{% endif %}">
+                                                        <a href="{{ grandchild.get_url }}" target="_blank" rel="noopener noreferrer">
+                                                            {{ grandchild.title }}
+                                                        </a>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No items found in this menu.</p>
+        {% endif %}
+    </div>
+{% endfor %}

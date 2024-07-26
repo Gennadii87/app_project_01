@@ -1,7 +1,8 @@
-from django.urls import path, include
+# urls.py
+from django.urls import path
+from .views import HomeView
 
+urlpatterns = [
+    path('', HomeView.as_view(), name='home'),
 
-# urlpatterns = [
-#     path('admin/', admin.site.urls),
-#     path('', include('menu.urls')),
-# ]
+]

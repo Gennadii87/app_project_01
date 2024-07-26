@@ -1,0 +1,21 @@
+.menu-container ul {
+
+
+}
+
+.menu-container li {
+}
+
+.menu-container li.active > a {
+    font-weight: bold;
+    color: red;
+    text-decoration: underline;
+}
+
+.menu-container a {
+    color: black;
+}
+
+.menu-container li.active > a:hover {
+    color: darkred;
+}
