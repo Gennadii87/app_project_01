@@ -1,2 +1,2 @@
-# -app_project_01
+# app_project_01
 Django application project
