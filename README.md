@@ -4,3 +4,7 @@ Django application project
 Обновить пакетный менеджер pip:
     
     python -m pip install --upgrade pip
+
+Установить зависимости: 
+    
+    pip install -r requirements
