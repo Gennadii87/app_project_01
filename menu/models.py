@@ -5,7 +5,7 @@ from django.urls import reverse, NoReverseMatch
 
 class Menu(models.Model):
     objects = None
-    name = models.CharField(max_length=100, unique=True)
+    name = models.CharField(max_length=100, unique=True, verbose_name='название меню')
 
     def __str__(self):
         return self.name
@@ -13,39 +13,42 @@ class Menu(models.Model):
 
 class MenuItem(models.Model):
     objects = None
-    menu = models.ForeignKey(Menu, related_name='items', on_delete=models.CASCADE)
-    parent = models.ForeignKey('self', null=True, blank=True, related_name='children', on_delete=models.CASCADE)
-    menu_item_title = models.CharField(max_length=100)
-    url = models.CharField(max_length=200, blank=True, null=True)
-    named_url = models.CharField(max_length=100, blank=True, null=True)
+    menu = models.ForeignKey(Menu, related_name='items', on_delete=models.CASCADE, verbose_name='меню')
+    parent = models.ForeignKey(
+                            'self',
+                            null=True,
+                            blank=True,
+                            related_name='children',
+                            on_delete=models.CASCADE,
+                            verbose_name='наследовать'
+                        )
+    menu_item_title = models.CharField(max_length=100, verbose_name='название объекта меню')
+    url = models.CharField(max_length=200, blank=True, null=True, verbose_name='url объекта меню')
+    title = models.CharField(max_length=100, blank=True, null=True, verbose_name='заголовок')
 
     def get_url(self):
         if self.url:
             return self.url
-        if self.named_url:
-            try:
-                return reverse(self.named_url)
-            except NoReverseMatch:
-                print(f"NoReverseMatch: '{self.named_url}' is not a valid view function or pattern name.")
-                return '#'
         return '#'
 
-    # def clean(self):
-    #     # Проверка на циклические ссылки
-    #     if self.parent and self.parent == self:
-    #         raise ValidationError("An item cannot be its own parent.")
-    #
-    #     # Проверка на циклические ссылки в иерархии
-    #     if self.parent and self.parent in self.get_ancestors():
-    #         raise ValidationError("This parent item creates a cycle in the menu hierarchy.")
-    #
-    # def get_ancestors(self):
-    #     ancestors = []
-    #     parent = self.parent
-    #     while parent:
-    #         ancestors.append(parent)
-    #         parent = parent.parent
-    #     return ancestors
+    def clean(self):
+        # Проверка на то, чтобы элемент не был сам себе родителем
+        if self.parent and self.parent == self:
+            raise ValidationError("An item cannot be its own parent.")
+
+        # Проверка на циклические ссылки в иерархии
+        if self.parent:
+            if self.is_descendant_of(self):
+                raise ValidationError("This parent item creates a cycle in the menu hierarchy.")
+
+    def is_descendant_of(self, item):
+        """Проверка, является ли элемент потомком другого элемента"""
+        parent = self.parent
+        while parent is not None:
+            if parent == item:
+                return True
+            parent = parent.parent
+        return False
 
     def __str__(self):
         return self.menu_item_title
