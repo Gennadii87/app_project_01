@@ -37,4 +37,7 @@ Django application project
 Starting development server at http://127.0.0.1:8000/
 
 ![weather](/image/menu_up2.png)
-<br>
+
+Панель администратора:
+
+![weather](/image/admin_panel.png)
