@@ -1,9 +1,34 @@
-.menu-container ul {
-
-
+html {
+    margin: 0;
+    padding: 0;
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+.menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: aquamarine;
+    
+}
+.menu-container {
+    display: flex;
+    width: 600px;
+    flex-direction: column;
+    font-size: 22px;
 }
 
-.menu-container li {
+
+
+.menu-container li.active > p {
+    font-size: 18px;
+    border: 1px, solid, red;
+    background-color: rgb(221, 221, 221);
+    border-radius: 3px;
+    padding: 3px;
+    color: rgb(6, 29, 49);
 }
 
 .menu-container li.active > a {
@@ -14,8 +39,26 @@
 
 .menu-container a {
     color: black;
+    text-align: center;
 }
 
 .menu-container li.active > a:hover {
     color: darkred;
+}
+
+.selected-item-info {
+    display: flex;
+    width: fit-content;
+    text-align: center;
+    color: aliceblue;
+    border: 1px, solid, red;
+    border-radius: 10px;
+    background-color: rgb(39, 46, 61);
+    padding: 10px;
+    margin: 30px 0 50px 0;
+}
+
+hr {
+    width: 100%;
+    color: black;
 }

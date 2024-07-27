@@ -16,8 +16,10 @@
     </div>
 {% endfor %}
 
-<div class="selected-item-info">
-    {% if selected_item %}
+
+{% if selected_item %}
+<hr/>
+    <div class="selected-item-info">
         <h2>Выбранный объект: {{ selected_item.title }}</h2>
-    {% endif %}
-</div>
+    </div>
+{% endif %}
