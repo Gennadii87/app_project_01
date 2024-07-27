@@ -2,6 +2,10 @@ from django.db import models
 
 
 class Menu(models.Model):
+    class Meta:
+        verbose_name = 'модель меню'
+        verbose_name_plural = 'модели меню'
+
     objects = None
     name = models.CharField(max_length=100, unique=True, verbose_name='название меню')
 

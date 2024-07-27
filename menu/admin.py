@@ -58,7 +58,7 @@ class MenuItemInline(admin.StackedInline):  # Можно использоват�
     model = MenuItem
     form = MenuItemInlineForm
     extra = 1
-    fields = ('menu_item_title', 'url', 'named_url', 'parent')
+    fields = ('menu_item_title', 'url', 'title', 'parent')
 
 
 class MenuAdmin(admin.ModelAdmin):

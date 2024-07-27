@@ -7,7 +7,7 @@
         {% if menu_data.items %}
             <ul>
                 {% for item in menu_data.items %}
-                    {% include 'menu_item.html' with item=item active=menu_data.active %}
+                    {% include 'menu/menu_item.html' with item=item active=menu_data.active %}
                 {% endfor %}
             </ul>
         {% else %}
@@ -15,3 +15,9 @@
         {% endif %}
     </div>
 {% endfor %}
+
+<div class="selected-item-info">
+    {% if selected_item %}
+        <h2>Selected Item: {{ selected_item.title }}</h2>
+    {% endif %}
+</div>

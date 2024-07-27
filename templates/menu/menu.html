@@ -6,6 +6,11 @@ Menu
 {% endblock title %}
 {% block content %}
 
-<h1>Home</h1>
- {% include 'menu_template.html' %}
+
+<a href="/" rel="noopener noreferrer">
+    <h1>Home</h1>
+</a>
+
+{% include 'menu/menu_template.html' %}
+
 {% endblock content %}
