@@ -1,0 +1,7 @@
+venv
+*.pyc
+.idea
+README.md
+.dockerignore
+.gitignore
+image
