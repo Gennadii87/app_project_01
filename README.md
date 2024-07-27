@@ -4,6 +4,9 @@ Django application project
 
 Приложение "Меню" на django
 
+![weather](/image/menu.png)
+<br>
+
 Функционал:
 <pre>
     - добавление, удаление и изменение объектов меню и дочерних элементов можно делать через панель администратора
@@ -13,6 +16,11 @@ Django application project
     - меню на одной странице может быть несколько
     - доступ в панель администратора login: admin, password: admin
 </pre>
+
+Развернуто:
+
+![weather](/image/menu_up.png)
+<br>
 
 Обновить пакетный менеджер pip:
     
@@ -27,3 +35,6 @@ Django application project
     python manage.py runserver
     
 Starting development server at http://127.0.0.1:8000/
+
+![weather](/image/menu_up2.png)
+<br>
