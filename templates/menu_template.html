@@ -7,33 +7,7 @@
         {% if menu_data.items %}
             <ul>
                 {% for item in menu_data.items %}
-                    <li class="{% if item in menu_data.active_items %}active{% endif %}">
-                        <a href="{{ item.get_url }}" target="_blank" rel="noopener noreferrer">
-                            {{ item.title }}
-                        </a>
-                        {% if item.children.all %}
-                            <ul>
-                                {% for child in item.children.all %}
-                                    <li class="{% if child in menu_data.active_items %}active{% endif %}">
-                                        <a href="{{ child.get_url }}" target="_blank" rel="noopener noreferrer">
-                                            {{ child.title }}
-                                        </a>
-                                        {% if child.children.all %}
-                                            <ul>
-                                                {% for grandchild in child.children.all %}
-                                                    <li class="{% if grandchild in menu_data.active_items %}active{% endif %}">
-                                                        <a href="{{ grandchild.get_url }}" target="_blank" rel="noopener noreferrer">
-                                                            {{ grandchild.title }}
-                                                        </a>
-                                                    </li>
-                                                {% endfor %}
-                                            </ul>
-                                        {% endif %}
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
-                    </li>
+                    {% include 'menu_item.html' with item=item active=menu_data.active %}
                 {% endfor %}
             </ul>
         {% else %}
