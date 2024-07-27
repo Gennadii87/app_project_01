@@ -33,6 +33,14 @@ Django application project
 Запуск приложения:
     
     python manage.py runserver
+
+Запуск приложения через Docker:
+    
+    docker-compose up -d 
+
+Остановка контейнера:
+    
+    docker-compose down -v  
     
 Starting development server at http://127.0.0.1:8000/
 
