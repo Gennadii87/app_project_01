@@ -1,0 +1,25 @@
+{% load menu_tags %}
+{% draw_all_menus as menus_data %}
+
+{% for menu_name, menu_data in menus_data.items %}
+    <div class="menu-container">
+        <h2>{{ menu_name }}</h2>
+        {% if menu_data.items %}
+            <ul>
+                {% for item in menu_data.items %}
+                    {% include 'menu/menu_item.html' with item=item active=menu_data.active %}
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>В этом меню ничего не найдено.</p>
+        {% endif %}
+    </div>
+{% endfor %}
+
+
+{% if selected_item %}
+<hr/>
+    <div class="selected-item-info">
+        <h2>Выбранный объект: {{ selected_item.title }}</h2>
+    </div>
+{% endif %}
