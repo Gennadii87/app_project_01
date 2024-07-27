@@ -11,13 +11,13 @@
                 {% endfor %}
             </ul>
         {% else %}
-            <p>No items found in this menu.</p>
+            <p>В этом меню ничего не найдено.</p>
         {% endif %}
     </div>
 {% endfor %}
 
 <div class="selected-item-info">
     {% if selected_item %}
-        <h2>Selected Item: {{ selected_item.title }}</h2>
+        <h2>Выбранный объект: {{ selected_item.title }}</h2>
     {% endif %}
 </div>
