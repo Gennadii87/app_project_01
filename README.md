@@ -28,7 +28,7 @@ Django application project
 
 Установить зависимости: 
     
-    pip install -r requirements
+    pip install -r requirements.txt
 
 Запуск приложения:
     
