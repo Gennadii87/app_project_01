@@ -1,6 +1,4 @@
-from django.core.exceptions import ValidationError
 from django.db import models
-from django.urls import reverse, NoReverseMatch
 
 
 class Menu(models.Model):
@@ -30,25 +28,6 @@ class MenuItem(models.Model):
         if self.url:
             return self.url
         return '#'
-
-    def clean(self):
-        # Проверка на то, чтобы элемент не был сам себе родителем
-        if self.parent and self.parent == self:
-            raise ValidationError("An item cannot be its own parent.")
-
-        # Проверка на циклические ссылки в иерархии
-        if self.parent:
-            if self.is_descendant_of(self):
-                raise ValidationError("This parent item creates a cycle in the menu hierarchy.")
-
-    def is_descendant_of(self, item):
-        """Проверка, является ли элемент потомком другого элемента"""
-        parent = self.parent
-        while parent is not None:
-            if parent == item:
-                return True
-            parent = parent.parent
-        return False
 
     def __str__(self):
         return self.menu_item_title
